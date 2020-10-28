@@ -6,4 +6,6 @@ data class CompanyDto (
         var description: String,
         var city: String,
         var address: String
-)
+) {
+    constructor(): this(0, "", "", "", "")
+}
