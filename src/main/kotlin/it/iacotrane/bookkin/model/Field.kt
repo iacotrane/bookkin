@@ -1,9 +1,6 @@
 package it.iacotrane.bookkin.model
 
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
+import javax.persistence.*
 
 @Entity
 class Field : BaseEntity() {
@@ -13,5 +10,17 @@ class Field : BaseEntity() {
     var id: Long = 0
 
     //TODO: Add fields
+    @Enumerated(EnumType.STRING)
+    lateinit var fieldType: FieldType
+
+    var maxPlayers: Int = 0
+
+    var playable: Boolean = true
+
+    @OneToMany(mappedBy = "field")
+    val bookingRanges: List<BookingRange> = ArrayList()
+
+    @ManyToOne
+    lateinit var company: Company
 
 }
