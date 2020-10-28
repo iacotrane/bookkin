@@ -8,4 +8,6 @@ data class UserDto(
         var surname: String,
         var email: String,
         var userType: UserType
-)
+) {
+    constructor(): this(0, "", "", "", UserType.PLAYER)
+}

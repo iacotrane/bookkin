@@ -7,4 +7,6 @@ data class FieldDto (
         var fieldType: FieldType,
         var name: String,
         var maxPlayer: Int
-)
+) {
+    constructor() : this(0, FieldType.SOCCER, "", 0)
+}

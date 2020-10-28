@@ -7,10 +7,11 @@ import java.time.LocalTime
 data class ReservationDto(
         var id: Long,
         var state: ReservationState,
-        var reservationDate: LocalDate,
-        var reservationStartTime: LocalTime,
-        var reservationEndTime: LocalTime,
+        var reservationDate: LocalDate?,
+        var reservationStartTime: LocalTime?,
+        var reservationEndTime: LocalTime?,
         var price: Double,
-        var fieldName: String,
-        var userDto: UserDto
-)
+        var fieldName: String
+) {
+    constructor(): this(0, ReservationState.BOOKED, null, null, null, 0.0, "")
+}
