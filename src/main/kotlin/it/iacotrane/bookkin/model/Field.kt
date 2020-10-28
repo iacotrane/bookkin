@@ -13,6 +13,8 @@ class Field : BaseEntity() {
     @Enumerated(EnumType.STRING)
     lateinit var fieldType: FieldType
 
+    var name: String = ""
+
     var maxPlayers: Int = 0
 
     var playable: Boolean = true
