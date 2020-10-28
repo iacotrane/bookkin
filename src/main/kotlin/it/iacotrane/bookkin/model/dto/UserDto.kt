@@ -7,7 +7,8 @@ data class UserDto(
         var name: String,
         var surname: String,
         var email: String,
-        var userType: UserType
+        var userType: UserType,
+        var companyId: Long
 ) {
-    constructor(): this(0, "", "", "", UserType.PLAYER)
+    constructor(): this(0, "", "", "", UserType.PLAYER, 0)
 }

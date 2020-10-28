@@ -19,10 +19,22 @@ class Company : BaseEntity() {
 
     var address: String = ""
 
-    @OneToMany(mappedBy = "company")
-    val fields: List<Field> = ArrayList()
+    @OneToMany(mappedBy = "company", cascade = [CascadeType.ALL])
+    private val fields: MutableList<Field> = ArrayList()
 
-    @OneToMany(mappedBy = "company")
-    val users: List<User> = ArrayList()
+    @OneToMany(mappedBy = "company", cascade = [CascadeType.PERSIST])
+    private val users: MutableList<User> = ArrayList()
+
+    fun addUser(user: User): Company {
+        user.company = this
+        users.add(user)
+        return this
+    }
+
+    fun addField(field: Field): Company {
+        field.company = this
+        fields.add(field)
+        return this
+    }
 
 }
