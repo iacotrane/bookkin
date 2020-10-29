@@ -20,9 +20,15 @@ class Field : BaseEntity() {
     var playable: Boolean = true
 
     @OneToMany(mappedBy = "field")
-    val bookingRanges: List<BookingRange> = ArrayList()
+    private val bookingRanges: MutableList<BookingRange> = ArrayList()
 
     @ManyToOne
     lateinit var company: Company
+
+    fun addBookingRange(bookingRange: BookingRange): Field {
+        bookingRange.field = this
+        bookingRanges.add(bookingRange)
+        return this
+    }
 
 }
