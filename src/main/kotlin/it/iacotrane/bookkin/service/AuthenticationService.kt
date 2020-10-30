@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service
 @Service
 class AuthenticationService(
         private val companyRepository: CompanyRepository,
-        private val userRepository: UserRepository,
         private val companyMapper: CompanyMapper,
-        private val userMapper: UserMapper
+        private val userMapper: UserMapper,
+        private val firebaseAuthService: FirebaseAuthService
 ) {
 
     fun createNewCompany(companyRegistrationRequest: CompanyRegistrationRequest) {
@@ -22,7 +22,7 @@ class AuthenticationService(
         val companyEntity = companyMapper.convertToEntity(companyDto)
         val userEntity = userMapper.convertToEntity(userDto)
         companyEntity.addUser(userEntity)
-        //TODO: Call Firebase API to register user
+        firebaseAuthService.registerUser(userDto)
         companyRepository.save(companyEntity)
     }
 
@@ -30,7 +30,7 @@ class AuthenticationService(
         val company = companyRepository.findById(companyId).orElseThrow { throw CompanyNotFoundException("Company with id: $companyId not found") }
         val userEntity = userMapper.convertToEntity(userDto)
         company.addUser(userEntity)
-        //TODO: Call Firebase API to register user
+        firebaseAuthService.registerUser(userDto)
         companyRepository.save(company)
     }
 

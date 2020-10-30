@@ -13,7 +13,10 @@ class User : BaseEntity() {
 
     var surname: String = ""
 
+    @Column(unique = true)
     var email: String = ""
+
+    var phoneNumber: String = ""
 
     @Enumerated(EnumType.STRING)
     lateinit var userType: UserType
