@@ -1,7 +1,7 @@
 FROM maven:3.5-jdk-8 AS build
 COPY pom.xml ./
 COPY src ./src
-RUN mvn -P mysql clean package
+RUN mvn -DskipTests -P mysql clean package
 FROM gcr.io/distroless/java
 # Define the 8080 port to be exported
 EXPOSE 8080
