@@ -1,5 +1,5 @@
 FROM maven:3.5-jdk-8 AS build
-RUN mvn -f -P mysql pom.xml clean package
+RUN mvn -P mysql clean package
 
 
 FROM gcr.io/distroless/java
