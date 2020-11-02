@@ -13,7 +13,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>bookkin</name>
 	<description>App to book a sports field</description>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<properties>
 		<java.version>8</java.version>
@@ -51,6 +51,11 @@
 			<version>4.3.1</version>
 		</dependency>
 		<dependency>
+			<groupId>com.querydsl</groupId>
+			<artifactId>querydsl-apt</artifactId>
+			<version>${querydsl.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>com.google.firebase</groupId>
 			<artifactId>firebase-admin</artifactId>
 			<version>7.0.1</version>
@@ -65,6 +70,16 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-gcp-starter</artifactId>
+			<version>1.0.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-gcp-starter-sql-mysql</artifactId>
+			<version>1.0.0.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -107,9 +122,6 @@
 
 	<profiles>
 		<profile>
-			<id>gcp</id>
-		</profile>
-		<profile>
 			<id>mysql</id>
 		</profile>
 	</profiles>
@@ -136,14 +148,8 @@
 						</goals>
 					</execution>
 					<execution>
-						<id>test-compile</id>
-						<phase>test-compile</phase>
-						<goals>
-							<goal>test-compile</goal>
-						</goals>
-					</execution>
-					<execution>
 						<id>kapt</id>
+						<phase>generate-sources</phase>
 						<goals>
 							<goal>kapt</goal>
 						</goals>
@@ -165,6 +171,13 @@
 								</annotationProcessorPath>
 							</annotationProcessorPaths>
 						</configuration>
+					</execution>
+					<execution>
+						<id>test-compile</id>
+						<phase>test-compile</phase>
+						<goals>
+							<goal>test-compile</goal>
+						</goals>
 					</execution>
 				</executions>
 				<configuration>
@@ -190,6 +203,12 @@
 					</dependency>
 				</dependencies>
 			</plugin>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>appengine-maven-plugin</artifactId>
+				<version>1.3.2</version>
+			</plugin>
+
 		</plugins>
 	</build>
 
