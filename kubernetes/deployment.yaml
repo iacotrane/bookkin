@@ -21,8 +21,8 @@ spec:
         app: bookkin
     spec:
       containers:
-        - image: gcr.io/iacotrane-bookkin/github.com/iacotrane/bookkin
-          imagePullPolicy: IfNotPresent
+        - image: gcr.io/iacotrane-bookkin/github.com/iacotrane/bookkin:latest
+          imagePullPolicy: Always
           name: bookkin
 ---
 apiVersion: v1
