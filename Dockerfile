@@ -7,6 +7,5 @@ FROM gcr.io/distroless/java
 EXPOSE 8080
 # Copy the jar application into the container
 COPY --from=build target/*.jar ./app.jar
-# Specify the command to execute to run the spring boot application, and the healtcheck to check the status of the application
+# Specify the command to execute to run the spring boot application
 ENTRYPOINT java -jar -Dspring.profiles.active=mysql ./app.jar
-HEALTHCHECK --interval=5m --timeout=3s --start-period=30s CMD curl -f http://localhost:8080/actuator/health || exit 1
