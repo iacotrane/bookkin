@@ -19,6 +19,7 @@ class SecurityConfig(
                 .authorizeRequests()
                 .antMatchers("/api/manager/**").hasAnyRole(UserType.MANAGER.name)
                 .antMatchers("/api/player/**").hasAnyRole(UserType.MANAGER.name, UserType.PLAYER.name)
+                .antMatchers("/api/login").authenticated()
                 .antMatchers("/**").permitAll()
                 .and()
                 .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter::class.java)
